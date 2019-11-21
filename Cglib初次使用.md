@@ -69,6 +69,19 @@ public class App {
         proxy.methodA();
         proxy.methodB();
         System.out.println(proxy.getClass().getCanonicalName());
+        
+        Enhancer enhancer1 = new Enhancer();//这种方式和上面是一样的效果
+        enhancer1.setSuperclass(Origin.class);
+        enhancer1.setCallbackFilter(new CustomCallBackFilter());
+        enhancer1.setCallbackTypes(new Class[] { CallBackA.class, CallBackB.class });
+        enhancer1.setNamingPolicy(new CustomNamingPolicy());
+        Class clazz = enhancer1.createClass();
+        //Enhancer.registerCallbacks(clazz, new Callback[] { new CallBackA(), new CallBackB() });
+        Enhancer.registerStaticCallbacks(clazz, new Callback[] { new CallBackA(), new CallBackB() });//和上面registerCallbacks实现的是同一个效果
+        Origin proxy1 = (Origin) clazz.newInstance();
+        proxy1.methodA();
+        proxy1.methodB();
+        System.out.println(proxy1.getClass().getCanonicalName());
     }
 }
 ```
