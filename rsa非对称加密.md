@@ -23,7 +23,7 @@ public class RSAUtils {
 
     //将Base64编码后的公钥转换成PublicKey对象
     public static PublicKey stringToPublicKey(String publicKeyStr) throws Exception{
-        byte[] keyBytes = Base64Utils.encode(publicKeyStr.getBytes());
+        byte[] keyBytes = Base64Utils.decode(publicKeyStr.getBytes());
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
         return publicKey;
@@ -31,7 +31,7 @@ public class RSAUtils {
 
     //将Base64编码后的私钥转换成PrivateKey对象
     public static PrivateKey stringToPrivateKey(String privateKeyStr) throws Exception{
-        byte[] keyBytes = Base64Utils.encode(privateKeyStr.getBytes());
+        byte[] keyBytes = Base64Utils.decode(privateKeyStr.getBytes());
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
         return privateKey;
