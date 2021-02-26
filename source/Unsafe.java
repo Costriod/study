@@ -800,7 +800,7 @@ public final class Unsafe {
 
     /**
      * 返回当前CPU指令带宽，举个例子：64位CPU内存宽度为64，也就是8字节，所以64位CPU情况下调用addressSize返回8
-     * 当然，32位的COU这里就返回4
+     * 当然，32位的CPU这里就返回4
      * Report the size in bytes of a native pointer, as stored via {@link
      * #putAddress}.  This value will be either 4 or 8.  Note that the sizes of
      * other primitive types (as stored in native memory blocks) is determined
@@ -813,8 +813,6 @@ public final class Unsafe {
 
     /**
      * 返回系统内存分页的大小，2的指数倍
-     * Report the size in bytes of a native memory page (whatever that is).
-     * This value will always be a power of two.
      */
     public native int pageSize();
 
